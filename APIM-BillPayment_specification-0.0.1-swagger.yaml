@@ -142,31 +142,57 @@ components:
 
             >  Sample value  <br>
               95501310120170530183382162
-          example: BillLookup
+          example: MPAY_20080215_000000000000102
 
         transactionDateTime:
           type: string
           maxLength: 29
-          description: The name of the function provided by a service provider
-          example: BillLookup
+          description: >
+            System timestamp that this source message in this interaction chain was sent, not time each individual message was sent.<br>
+            
+            > Format: yyyy-MM-dd'T'HH:mm:ss.SSS+07:00
+          example: 1997-07-16T19:20:30.450+07:00
 
         billerType:
           type: string
           maxLength: 12
-          description: The name of the function provided by a service provider
-          example: BillLookup
+          description: >
+            Receiving Proxy Type
+
+            > PromptPay : BILLERID<br>
+            KBankChannel : send blank or empty string
+          example: BILLERID
 
         billerId:
           type: string
           maxLength: 128
-          description: The name of the function provided by a service provider
-          example: BillLookup
+          description: >
+            Receiving Proxy Value<br>
+            PromptPay :  15 digits<br>
+            KBankChannel : 5 digits<br>
+
+            > Sample value <br>
+              PromptPay : 123456789012345<br>
+              KBankChannel : 98099
+          example: 123456789012345
 
         terminalNo:
           type: string
           maxLength: 16
-          description: The name of the function provided by a service provider
-          example: BillLookup
+          description: >
+            Terminal ID
+            PromptPay : &lt;AppId&gt;&lt;RunningNo&gt;<br>
+
+            >  Sample value <br>
+              JAEW000000000001<br>
+              MPAY000000000001<br>
+              TMN0000000000001<br><br>
+
+            KBankChannel : &lt;66 mobileNo&gt;
+
+             >  Sample value <br>
+             66813320099
+          example: JAEW000000000001
 
         promptPayReferenceNumber:
           type: string
