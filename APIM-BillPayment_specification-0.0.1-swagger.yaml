@@ -148,9 +148,9 @@ components:
           type: string
           maxLength: 29
           description: >
-            System timestamp that this source message in this interaction chain was sent, not time each individual message was sent.<br>
+            System timestamp that this source message in this interaction chain was sent, not time each individual message was sent.<br><br>
             
-            > Format: yyyy-MM-dd'T'HH:mm:ss.SSS+07:00
+            Format: yyyy-MM-dd'T'HH:mm:ss.SSS+07:00
           example: 1997-07-16T19:20:30.450+07:00
 
         billerType:
@@ -167,7 +167,7 @@ components:
           type: string
           maxLength: 128
           description: >
-            Receiving Proxy Value<br>
+            Receiving Proxy Value<br><br>
             PromptPay :  15 digits<br>
             KBankChannel : 5 digits<br>
 
@@ -180,7 +180,7 @@ components:
           type: string
           maxLength: 16
           description: >
-            Terminal ID
+            Terminal ID<br><br>
             PromptPay : &lt;AppId&gt;&lt;RunningNo&gt;<br>
 
             >  Sample value <br>
@@ -197,56 +197,72 @@ components:
         promptPayReferenceNumber:
           type: string
           maxLength: 12
-          description: The name of the function provided by a service provider
-          example: BillLookup
+          description: >
+            Source system's transaction reference number<br><br>
+            PromptPay : format YDDDHHnnnnnn example: 900120000001<br>
+            KBankChannel : send blank or empty string
+          example: 900120000001
 
         channelCode:
           type: string
           maxLength: 3
-          description: The name of the function provided by a service provider
-          example: BillLookup
+          description: Terminal type
+          enum:
+            - IVR
+            - N/A
+            - ATM
+            - BPA
+            - BRN
+            - IB
+            - MOB
+          example: MOB
 
         tranAmount:
           type: string
           maxLength: 13
-          description: The name of the function provided by a service provider
-          example: BillLookup
+          description: >
+            Transaction amount<br><br>
+            Format: 9(10).99 , ###0.00
+          example: 1000.00
 
         senderBankCode:
           type: string
           maxLength: 20
-          description: The name of the function provided by a service provider
-          example: BillLookup
+          description: Sender Bank
+          example: Kbank
 
         reference1:
           type: string
           maxLength: 20
-          description: The name of the function provided by a service provider
-          example: BillLookup
+          description: 1st Reference Number on Bill Slip or QR Code
+          example: 12345678901234567890
 
         reference2:
           type: string
           maxLength: 20
-          description: The name of the function provided by a service provider
-          example: BillLookup
+          description: 2st Reference Number on Bill Slip or QR Code
+          example: 12345678901234567890
 
         reference3:
           type: string
           maxLength: 20
-          description: The name of the function provided by a service provider
-          example: BillLookup
+          description: >
+            3st Reference Number on Bill Slip or QR Code<br><br>
+            PromptPay : 12345678901234567890<br>
+            KBankChannel : send blank or empty string
+          example: 12345678901234567890
 
         language:
           type: string
           maxLength: 2
-          description: The name of the function provided by a service provider
-          example: BillLookup
+          description: Language “EN” = English (Default) “TH” = Thai
+          example: EN
  
         apiKey:
           type: string
           maxLength: 50
-          description: The name of the function provided by a service provider
-          example: BillLookup
+          description: Key of merchant that ORPG will use to communicate with Merchant will be provided by Merchant.
+          example: 95501310120170530183382162
 
     register:
       properties:
