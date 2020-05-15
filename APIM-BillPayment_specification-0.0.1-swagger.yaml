@@ -135,7 +135,6 @@ components:
             KBankChannel  KBank Unique transaction number generated from Payment Channel
           example: BillLookup
 
-          example: BillLookup
 
         transactionDateTime:
           type: string
