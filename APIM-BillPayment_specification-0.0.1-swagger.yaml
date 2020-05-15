@@ -129,10 +129,11 @@ components:
         transactionId:
           type: string
           maxLength: 47
-          description: |
-            Unique Request ID
-            PromptPay : <Sponsor Bank code>_<System Date YYYYMMDD>_<Unique ID>
-            KBankChannel : KBank Unique transaction number generated from Payment Channel.
+          description: >
+            Unique Request ID <br><br>
+            PromptPay : &lt;Sponsor Bank code&gt;_&lt;System Date YYYYMMDD&gt;_&lt;Unique ID&gt; <br><br>
+            KBankChannel  KBank Unique transaction number generated from Payment Channel
+          example: BillLookup
 
           example: BillLookup
 
