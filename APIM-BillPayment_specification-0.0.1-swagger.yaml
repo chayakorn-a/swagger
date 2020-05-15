@@ -131,10 +131,18 @@ components:
           maxLength: 47
           description: >
             Unique Request ID <br><br>
-            PromptPay : &lt;Sponsor Bank code&gt;_&lt;System Date YYYYMMDD&gt;_&lt;Unique ID&gt; <br><br>
-            KBankChannel  KBank Unique transaction number generated from Payment Channel
-          example: BillLookup
+            PromptPay : &lt;Sponsor Bank code&gt;\_&lt;System Date YYYYMMDD&gt;\_&lt;Unique ID&gt;<br>
+ 
+            >  Sample value <br>
+              MPAY_20080215_000000000000102<br>
+              JAEW_20080215_C9BCE0F5<br>
+              TMN_20080215_550e8400e29b41d4a716446 <br><br>
 
+            KBankChannel :  KBank Unique transaction number generated from Payment Channel
+
+            >  Sample value  <br>
+              95501310120170530183382162
+          example: BillLookup
 
         transactionDateTime:
           type: string
