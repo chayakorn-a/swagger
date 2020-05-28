@@ -1,0 +1,317 @@
+openapi: 3.0.0
+info:
+  title: slip verification
+  description: |
+    Slip Verification API allows the verification and information retrieval by using the Transaction Reference embeded in the transfer slip generated from the transaction from K Plus mobile banking to any KBank's bank account
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/siderial/test/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: https://dev.openapi-nonprod.kasikornbank.com/v1/verslip
+security:
+- kbank_oauth:
+  - All
+tags:
+- name: Verify
+  description: slip verification
+paths:
+  /kbank/verify:
+    post:
+      tags:
+      - Verify
+      summary: Verify Kbank's Slip
+      description: Inquire Kbank Verify Pay Slip Information
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+components:
+  schemas:
+    RequestData:
+      required:
+      - sendingBank
+      - transRef
+      type: object
+      properties:
+        sendingBank:
+          maxLength: 3
+          type: string
+          description: Sender Bank Code.(Must be "004")
+          example: "004"
+        transRef:
+          maxLength: 25
+          type: string
+          description: Transaction Reference Number Contains Reference number of the
+            transaction required to verify the pay slip
+          example: "010092101507665143"
+    ResponseData:
+      required:
+      - amount
+      - countryCode
+      - receiver
+      - receivingBank
+      - sendingBank
+      - transDate
+      - transRef
+      - transTime
+      type: object
+      properties:
+        language:
+          maxLength: 2
+          type: string
+          description: Language
+          example: TH
+          enum:
+          - EN
+          - TH
+        receivingBank:
+          maxLength: 3
+          type: string
+          description: Receiving Bank Code
+          example: "006"
+        sendingBank:
+          maxLength: 3
+          type: string
+          description: Sender Bank Code
+          example: "004"
+        transRef:
+          maxLength: 25
+          type: string
+          description: Transaction Reference Number Contains Reference number of the
+            transaction required to verify the pay slip
+          example: "010092101507665143"
+        transDate:
+          maxLength: 8
+          pattern: yyyyMMdd
+          type: string
+          description: Transaction Date Text.This Field contains Date on pay slip.
+          example: "20200401"
+        transTime:
+          maxLength: 8
+          pattern: Hh:mm:ss
+          type: string
+          description: Transaction Time Text.This Field contains Time on pay slip.
+          example: 10:15:07
+        sender:
+          $ref: '#/components/schemas/ResponseData_sender'
+        receiver:
+          $ref: '#/components/schemas/ResponseData_receiver'
+        amount:
+          maxLength: 12
+          type: number
+          description: This Field contains Amount on pay slip.
+          format: decimal
+          example: 50
+        paidLocalAmount:
+          maxLength: 12
+          type: number
+          description: Paid Local Amount
+          format: decimal
+          example: 1
+        paidLocalCurrency:
+          maxLength: 3
+          type: string
+          description: Paid Local Currency
+          enum:
+          - "764"
+        countryCode:
+          maxLength: 2
+          type: string
+          description: Country Code
+          enum:
+          - TH
+        transFeeAmount:
+          maxLength: 12
+          type: number
+          description: Transaction Fee Amount
+          format: decimal
+          example: 0
+        ref1:
+          maxLength: 20
+          type: string
+          description: 1st Reference Number on pay slip
+        ref2:
+          maxLength: 20
+          type: string
+          description: 2nd Reference Number on pay slip
+        ref3:
+          maxLength: 20
+          type: string
+          description: 3rd Reference Number on pay slip
+        toMerchantId:
+          maxLength: 15
+          type: string
+          description: To Merchant ID
+    body:
+      required:
+      - data
+      - rqDt
+      - rqUID
+      type: object
+      properties:
+        rqUID:
+          maxLength: 47
+          type: string
+          description: Unique Request ID
+          example: 783_20191107_v4UIS1K2Mobile
+        rqDt:
+          maxLength: 33
+          pattern: yyyy-MM-dd'T'HH:mm:ss.SSS+07:00
+          type: string
+          description: Timestamp when partner send this request to KBank in ISO 8601
+            format
+          example: 2019-11-05T17:00:00.966+07:00
+        data:
+          $ref: '#/components/schemas/RequestData'
+    inline_response_200:
+      required:
+      - data
+      - rqUID
+      - statusCode
+      - statusMessage
+      type: object
+      properties:
+        rqUID:
+          maxLength: 47
+          type: string
+          description: Unique Request ID
+          example: 783_20191107_v4UIS1K2Mobile
+        statusCode:
+          maxLength: 4
+          type: string
+          description: Response Code
+          example: "0000"
+        statusMessage:
+          maxLength: 1024
+          type: string
+          description: Response Message
+          example: SUCCESS
+        data:
+          $ref: '#/components/schemas/ResponseData'
+    ResponseData_sender_proxy:
+      properties:
+        type:
+          maxLength: 12
+          type: string
+          description: From Proxy Type
+          example: MSISDN
+          enum:
+          - NATID
+          - MSISDN
+          - EWALLETID
+          - EMAIL
+          - BILLERID
+          - null
+        value:
+          maxLength: 128
+          type: string
+          description: From Proxy Value
+          example: "0863417894"
+    ResponseData_sender_account:
+      properties:
+        type:
+          maxLength: 12
+          type: string
+          description: From Account type
+          example: BANKAC
+          enum:
+          - BANKAC
+          - TOKEN
+          - DUMMY
+        value:
+          maxLength: 40
+          type: string
+          description: From Account Value
+          example: xxx-x-x0209-x
+    ResponseData_sender:
+      properties:
+        displayName:
+          maxLength: 50
+          type: string
+          description: The name to display in Thai or English depends on issuer bank
+            pay slip.
+          example: นาย ชื่อเต็ม น
+        name:
+          maxLength: 50
+          type: string
+          description: The name to display in English
+          example: Mr. Fullname L
+        proxy:
+          $ref: '#/components/schemas/ResponseData_sender_proxy'
+        account:
+          $ref: '#/components/schemas/ResponseData_sender_account'
+    ResponseData_receiver_proxy:
+      properties:
+        type:
+          maxLength: 12
+          type: string
+          description: To Proxy Type
+          example: MSISDN
+          enum:
+          - NATID
+          - MSISDN
+          - EWALLETID
+          - EMAIL
+          - BILLERID
+          - null
+        value:
+          maxLength: 128
+          type: string
+          description: To Proxy Value
+          example: "0863330000"
+    ResponseData_receiver_account:
+      required:
+      - type
+      - value
+      properties:
+        type:
+          maxLength: 12
+          type: string
+          description: To Account type
+          example: BANKAC
+          enum:
+          - BANKAC
+          - TOKEN
+          - DUMMY
+        value:
+          maxLength: 40
+          type: string
+          description: To Account Value
+          example: xxx-x-x3109-x
+    ResponseData_receiver:
+      required:
+      - account
+      - displayName
+      properties:
+        displayName:
+          maxLength: 50
+          type: string
+          description: Receiver name to display in Thai or English depends on issuer
+            bank pay slip
+          example: พงษ์ระพี ห
+        name:
+          maxLength: 50
+          type: string
+          description: Receiver name in English.
+          example: PONGRAPEE M
+        proxy:
+          $ref: '#/components/schemas/ResponseData_receiver_proxy'
+        account:
+          $ref: '#/components/schemas/ResponseData_receiver_account'
+  securitySchemes:
+    kbank_oauth:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://dev.openapi-nonprod.kasikornbank.com/oauth/token
+          scopes:
+            All: verify slip
