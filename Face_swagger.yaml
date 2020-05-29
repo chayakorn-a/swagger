@@ -1185,6 +1185,7 @@ components:
   securitySchemes:
     oAuth2_client_credential:
       type: oauth2
+      description: This API uses OAuth 2 with the implicit grant flow.
       flows:
         clientCredentials:
           tokenUrl: https://dev.openapi-nonprod.kasikornbank.com/oauth/token
