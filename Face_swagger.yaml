@@ -120,8 +120,7 @@ servers:
   - url: 'http://staging-api.example.com'
     description: 'Optional server description, e.g. Internal staging server for testing'
 security:
-- oAuth2_client_credential:
-  - All
+- oAuth2_client_credential: []
 tags:
   - name: Partner-Face-API
     description: Partner-Face-API
