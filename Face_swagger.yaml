@@ -1184,9 +1184,50 @@ components:
   securitySchemes:
     oAuth2_client_credential:
       type: oauth2
-      description: This API uses OAuth 2 with the implicit grant flow.s
+      description: |-
+        <p style="word-break: break-word;"><strong>How to work OAuth 2.0 to get access token</strong></p>
+        <p style="word-break: break-word;">1. Go to&nbsp; "My Apps" Menu and click the application name then the system displays your Consumer ID, Consumer Secret with the screen below.</p>
+        <p>&nbsp;</p>
+        <table>
+        <tbody>
+        <tr>
+        <td><img src="/bucket/SiteCollectionDocuments/assets/theme/img/interest-screen-05.png" alt="" width="200" /></td>
+        <td><small> Consumer ID =&lt;Your Consumer ID&gt;<br />Consumer Secret =&lt;Your Consumer Secret&gt;</small></td>
+        </tr>
+        </tbody>
+        </table>
+        <p>&nbsp;</p>
+        <p style="word-break: break-word;">2. Generate a Basic Authentication format with your Consumer ID and Consumer Secret with the step below</p>
+        <table>
+        <tbody>
+        <tr>
+        <td width="30">&nbsp;&nbsp;</td>
+        <td>
+        <ol class="num-list">
+        <li style="word-break: break-word;">Use data format&nbsp; &lt;Consumer ID&gt;:&lt;Consumer Secret&gt;<br /> &nbsp; &nbsp; Example data:&nbsp;<br />
+        <p style="padding-left: 30px;"><small>a2FzaWtvcm5iYW5rdXNlcg==</small>:<small>a2FzaWtvcm5iYW5rcGFzc3dvcmQ=</small></p>
+        </li>
+        <li style="word-break: break-word;">Encode data with Base64 encoder <br /> &nbsp;&nbsp;Example data:
+        <p style="padding-left: 30px;"><small>YTJGemFXdHZjbTVpWVc1cmRYTmxjZz09OmEyRnphV3R2Y201aVlXNXJjR0Z6YzNkdmNtUT0=</small></p>
+        </li>
+        <li style="word-break: break-word;">Use encode data from step.2 to fill in the header with the format below.<br />Authorization : Basic &lt;Encode data with Base64&gt;
+        <p style="padding    &lt;/td&gt;&lt;/tr&gt;-left: 30px;">Esample data:</p>
+        <p style="padding-left: 30px;"><small>Authorization : Basic YTJGemFXdHZjbTVpWVc1cmRYTmxjZz09OmEyRnphV3R2Y201aVlXNXJjR0Z6YzNkdmNtUT0=</small></p>
+        </li>
+        </ol>
+        </td>
+        </tr>
+        </tbody>
+        </table>
+        <p style="word-break: break-word;">3 .Specify&nbsp; "Content-Type: application/x-www-form-urlencoded" in header.</p>
+        <p style="word-break: break-word;">4. Specify "grant_type=client_credentials" in body.</p>
+        <p style="word-break: break-word;">5. Get your access token to call other APIs wihin 30 mins.</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p style="word-break: break-word;"><strong>Example requested message to get access token in curl command format</strong></p>
+        <p>&nbsp;</p>
+        <p style="padding-left: 20px;"><small><em>curl --location --request POST 'https://example.kasikornbank.com/oauth/token' \</em><br /><em> --header 'Content-Type: application/x-www-form-urlencoded' \</em><br /><em> --header 'Authorization: Basic YTJGemFXdHZjbTVpWVc1cmRYTmxjZz09OmEyRnphV3R2Y201aVlXNXJjR0Z6YzNkdmNtUT0=' \</em><br /><em> --data-urlencode 'grant_type=client_credentials'</em></small></p>
+        <p style="padding-left: 30px;">&nbsp;</p>
       flows:
         clientCredentials:
           tokenUrl: https://dev.openapi-nonprod.kasikornbank.com/oauth/token
-          scopes:
-            All: verify slip
