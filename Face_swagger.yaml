@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Face API
+  title: Face Open API
   description: >
     ### API Version History
 
@@ -8,61 +8,7 @@ info:
 
     ----------------|-------------|-------------|-------------------
 
-    0.0.1 | Initail Document | 2019-08-29 | Niwet Kongsrilang
-
-    0.0.2 | Change error code 'EC0003','EC0004' description | 2019-09-12 | Niwet
-    Kongsrilang
-
-    0.0.3 | Add face_id_01, face_id_02 in reponse message Service '004-01' |
-    2019-09-17 | Niwet Kongsrilang
-
-    0.0.4 | Add Service '004-02-Face Identification' | 2019-09-18 | Niwet
-    Kongsrilang
-
-    0.0.5 | Change UserData to Object include field ref1-ref10 | 2019-09-19 |
-    Niwet Kongsrilang
-
-    0.0.6 | Change return type String to Face object of Service '003-03' and
-    return 'faceId' to Array Face Object of Service '004-02' | 2019-09-20 |
-    Niwet Kongsrilang
-
-    0.0.7 | New Service '003-04' for Update userData of face in face set |
-    2019-09-30 | Niwet Kongsrilang
-
-    0.0.8 | Add field 'ttlInMilliseconds'(time to live),'description' in Service
-    '002-01' | 2019-09-30 | Niwet Kongsrilang
-
-    0.0.9 | Edit type of Error from array to object | 2019-10-09 | Niwet
-    Kongsrilang
-
-    0.0.10 | Revise Group & Service Name | 2019-10-29 | Niwet Kongsrilang
-
-    0.0.11 | Revise description for service '002-04' | 2019-11-11 | Sittichok
-    Thanomkulrat
-
-    0.0.12 | Update error messages 'ED0008' and 'ED0010' to include service
-    '002-03' | 2019-11-14 | Sittichok Thanomkulrat
-
-    0.0.13 | Fixed typo in request body for service '001-04' | 2019-11-20 |
-    Sittichok Thanomkulrat
-
-    0.0.14 | Add 'HTTP 403' response when partner does not have right to access
-    | 2019-11-21 | Sittichok Thanomkulrat
-
-    0.0.15 | Add optional 'faceSetStatus' parameter into request body of service
-    '002-05' | 2019-12-03 | Sittichok Thanomkulrat
-
-    0.0.16 | Remove typo in request parameters for service 001-04 | 2019-12-17 |
-    Sittichok Thanomkulrat
-
-    1.0.0 | Update api version to 1.0.0 | 2019-12-23 | Sittichok Thanomkulrat
-
-    1.0.1 | Rename api faceset-definition and faceset-manipulation group prefix
-    route | 2020-01-07 | Sittichok Thanomkulrat
-
-    1.0.2 | Add 'confidenceLevel' field in response for service 001-03 and
-    001-04 | 2020-01-30 | Sittichok Thanomkulrat
-
+    0.0.1 | Initail Document - Face API 1.0.2 | 2020-05-29 | Chayakorn Arjariya
 
     ### Service Description
 
@@ -166,12 +112,15 @@ info:
     ED0017 | 'Face Set' is expired. | 001-05, 002-03, 003-01
 
       
-  version: 1.0.2
+  version: 1.0.0
 servers:
   - url: 'http://api.example.com/v1'
     description: 'Optional server description, e.g. Main (production) server'
   - url: 'http://staging-api.example.com'
     description: 'Optional server description, e.g. Internal staging server for testing'
+security:
+- kbank_oauth:
+  - All
 tags:
   - name: Partner-Face-API
     description: Partner-Face-API
@@ -1232,3 +1181,11 @@ components:
           description: Elements in page.
       required:
         - header
+  securitySchemes:
+    kbank_oauth:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://dev.openapi-nonprod.kasikornbank.com/oauth/token
+          scopes:
+            All: verify slip
