@@ -1194,7 +1194,7 @@ components:
         <dl>
         <dd><small>Example<br />Consumer ID =a2FzaWtvcm5iYW5rdXNlcg==<br />Consumer Secret =a2FzaWtvcm5iYW5rcGFzc3dvcmQ=</small></dd>
         </dl>
-        <p style="word-break: break-word;">2. Generate a Basic Authentication format with your Consumer ID and Consumer Secret with the step below</p>
+        <p style="word-break: break-word;">2. Generate a Basic Authentication format with your Consumer ID and Consumer Secret with the steps.</p>
         <ul>
         <li style="word-break: break-word;">Use data format&nbsp; &lt;Consumer ID&gt;:&lt;Consumer Secret&gt;<br /> 
         <dl>
@@ -1206,7 +1206,7 @@ components:
         <dd><small>Example data:<br />YTJGemFXdHZjbTVpWVc1cmRYTmxjZz09OmEyRnphV3R2Y201aVlXNXJjR0Z6YzNkdmNtUT0=</small></dd>
         </dl>
         </li>
-        <li style="word-break: break-word;">Use encoded data to fill in the header with the format below.
+        <li style="word-break: break-word;">Use encoded data to fill in the header with the format.
         <dl>
         <dd>Authorization : Basic &lt;Encode data with Base64&gt;<br/><br/><small>Example data:<br />Authorization : Basic YTJGemFXdHZjbTVpWVc1cmRYTmxjZz09OmEyRnphV3R2Y201aVlXNXJjR0Z6YzNkdmNtUT0=</small></dd>
         </dl>
