@@ -1185,8 +1185,12 @@ components:
     oAuth2_client_credential:
       type: oauth2
       description: |-
+        <p style="word-break: break-word;">KBank Open API uses OAUTH2.0 client credentials as an authorization method. 
+        When requesting a client credentials access token, you must authenticate yourself as a client. In the response, 
+        an access token is retuned. This token is used to access any APIs that KBank provided. For secutity reasons, 
+        the validity of the token is temporary.</p>
         <p style="word-break: break-word;"><strong>How to work with OAuth 2.0 to get access token</strong></p>
-        <p style="word-break: break-word;">1. Customer will get Consumer ID and Consumer Secret from KBank.</p>
+        <p style="word-break: break-word;">1. Customer will get client credential(Consumer ID and Consumer Secret) from KBank.</p>
         <dl>
         <dd><small>Example<br />Consumer ID =a2FzaWtvcm5iYW5rdXNlcg==<br />Consumer Secret =a2FzaWtvcm5iYW5rcGFzc3dvcmQ=</small></dd>
         </dl>
@@ -1210,7 +1214,7 @@ components:
         </ul>
         <p style="word-break: break-word;">3. Specify&nbsp; "Content-Type: application/x-www-form-urlencoded" in header.</p>
         <p style="word-break: break-word;">4. Specify "grant_type=client_credentials" in body.</p>
-        <p style="word-break: break-word;">5. Get your access token to call other APIs wihin 30 mins.</p>
+        <p style="word-break: break-word;">5. Get your access token for calling any APIs. The token will be expired in 30 mins.</p>
         <p>&nbsp;</p>
         <p style="word-break: break-word;"><strong>Example requested message to get access token in curl command format</strong></p>
         <p style="padding-left: 20px;"><small><em>curl --location --request POST 'https://example.kasikornbank.com/oauth/token' \</em><br /><em> --header 'Content-Type: application/x-www-form-urlencoded' \</em><br /><em> --header 'Authorization: Basic YTJGemFXdHZjbTVpWVc1cmRYTmxjZz09OmEyRnphV3R2Y201aVlXNXJjR0Z6YzNkdmNtUT0=' \</em><br /><em> --data-urlencode 'grant_type=client_credentials'</em></small></p>
