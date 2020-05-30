@@ -1185,15 +1185,17 @@ components:
     oAuth2_client_credential:
       type: oauth2
       description: |-
-        <p style="word-break: break-word;"><strong>How to work OAuth 2.0 to get access token</strong></p>
+        <p style="word-break: break-word;"><strong>How to work with OAuth 2.0 to get access token</strong></p>
         <p style="word-break: break-word;">1. Customer will get Consumer ID and Consumer Secret from KBank.</p>
         <dl>
         <dd><small>Example<br />Consumer ID =a2FzaWtvcm5iYW5rdXNlcg==<br />Consumer Secret =a2FzaWtvcm5iYW5rcGFzc3dvcmQ=</small></dd>
         </dl>
         <p style="word-break: break-word;">2. Generate a Basic Authentication format with your Consumer ID and Consumer Secret with the step below</p>
         <ul>
-        <li style="word-break: break-word;">Use data format&nbsp; &lt;Consumer ID&gt;:&lt;Consumer Secret&gt;<br /> &nbsp; &nbsp; Example data:&nbsp;<br />
-        <p style="padding-left: 30px;"><small>a2FzaWtvcm5iYW5rdXNlcg==</small>:<small>a2FzaWtvcm5iYW5rcGFzc3dvcmQ=</small></p>
+        <li style="word-break: break-word;">Use data format&nbsp; &lt;Consumer ID&gt;:&lt;Consumer Secret&gt;<br /> 
+        <dl>
+        <dd><small>Example data:<br />a2FzaWtvcm5iYW5rdXNlcg==</small>:<small>a2FzaWtvcm5iYW5rcGFzc3dvcmQ=</small></dd>
+        </dl>
         </li>
         <li style="word-break: break-word;">Encode data with Base64 encoder <br /> &nbsp;&nbsp;Example data:
         <p style="padding-left: 30px;"><small>YTJGemFXdHZjbTVpWVc1cmRYTmxjZz09OmEyRnphV3R2Y201aVlXNXJjR0Z6YzNkdmNtUT0=</small></p>
