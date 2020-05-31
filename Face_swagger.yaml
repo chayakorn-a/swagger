@@ -156,22 +156,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceDetectResponse'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericResponseFail'
         '401':
           description: Unauthorized
-        '403':
-          description: Forbidden
-        '500':
-          description: API Internal Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponseFail'
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
   /face/quality:
     post:
       summary: Face-API-Quality (001-02)
@@ -811,6 +819,31 @@ components:
         - responsetDt
         - statusCode
         - errors
+    GenericOpenApiResponse_Fail:
+      properties:
+        code:
+          type: string
+          description: >-
+            Code to shows up that it's returned by open API. Normally be fixed as openapi_error.
+          example: openapi_error
+        message:
+          type: string
+          description: Error message description generate by Open API.
+          example: Backend Server Error
+          enum:
+            - 'Invalid Access Token'
+            - 'Invalid API Key'
+            - 'Access Token expired'
+            - 'Access Denied'
+            - 'Invalid SSL Certificate Errors'
+            - 'The rate limit is exceeded'
+            - 'Threat Detected'
+            - 'Invalid Request Format'
+            - 'Backend Server Error'
+            - 'The quota limit was exceeded'
+      required:
+        - code
+        - message
     GenericResponseFail:
       properties:
         header:
