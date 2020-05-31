@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Face Open API
+  title: Face Open-API
   description: >
     ### API Version History
 
@@ -824,11 +824,11 @@ components:
         code:
           type: string
           description: >-
-            Code to shows up that it's returned by open API. Normally be fixed as openapi_error.
+            The error code from Open-API. Normally, be fixed as openapi_error.
           example: openapi_error
         message:
           type: string
-          description: Error message description generate by Open API.
+          description: Error message description generate by Open-API.
           example: Backend Server Error
           enum:
             - 'Invalid Access Token'
