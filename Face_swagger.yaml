@@ -199,24 +199,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceQualityResponse'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericResponseFail'
         '401':
           description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found
-        '500':
-          description: API Internal Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponseFail'
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
   /face/faceid-compare:
     post:
       summary: Face-API-Compare (001-03)
@@ -238,24 +244,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceCompareResponse'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericResponseFail'
         '401':
           description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found
-        '500':
-          description: API Internal Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponseFail'
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
   /face/image-compare:
     post:
       summary: Face-API-Compare (001-04)
@@ -289,22 +301,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceCompareResponse'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericResponseFail'
         '401':
           description: Unauthorized
-        '403':
-          description: Forbidden
-        '500':
-          description: API Internal Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponseFail'
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
   /face/identification:
     post:
       summary: Face-API-Identification (001-05)
@@ -332,22 +352,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceIdentificationResponse'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericResponseFail'
         '401':
           description: Unauthorized
-        '403':
-          description: Forbidden
-        '500':
-          description: API Internal Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponseFail'
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
   /faceset-definition/create:
     post:
       summary: FaceSet-API-Create (002-01)
@@ -367,22 +395,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceSetCreateResponse'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericResponseFail'
         '401':
           description: Unauthorized
-        '403':
-          description: Forbidden
-        '500':
-          description: API Internal Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponseFail'
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
   /faceset-definition/delete:
     post:
       summary: FaceSet-API-Delete (002-02)
@@ -402,24 +438,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceSetDeleteResponse'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericResponseFail'
         '401':
           description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found
-        '500':
-          description: API Internal Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponseFail'
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
   /faceset-definition/update:
     post:
       summary: FaceSet-API-Update (002-03)
@@ -439,24 +481,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceSetUpdateResponse'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericResponseFail'
         '401':
           description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found
-        '500':
-          description: API Internal Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponseFail'
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
   /faceset-definition/get:
     post:
       summary: FaceSet-API-Get (002-04)
@@ -476,24 +524,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceSetGetResponse'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericResponseFail'
         '401':
           description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found
-        '500':
-          description: API Internal Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponseFail'
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
   /faceset-definition/list:
     post:
       summary: FaceSet-API-List (002-05)
@@ -513,24 +567,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceSetGetAllResponse'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericResponseFail'
         '401':
           description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found
-        '500':
-          description: API Internal Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponseFail'
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
   /faceset-manipulation/add:
     post:
       summary: FaceSet-Face-API-Add (003-01)
@@ -550,24 +610,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceSetFaceAddResponse'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericResponseFail'
         '401':
           description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found
-        '500':
-          description: API Internal Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponseFail'
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
   /faceset-manipulation/delete:
     post:
       summary: FaceSet-Face-API-Delete (003-02)
@@ -587,24 +653,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceSetFaceDeleteResponse'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericResponseFail'
         '401':
           description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found
-        '500':
-          description: API Internal Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponseFail'
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
   /faceset-manipulation/list:
     post:
       summary: FaceSet-Face-API-List (003-03)
@@ -624,24 +696,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceSetFaceListFaceResponse'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericResponseFail'
         '401':
           description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found
-        '500':
-          description: API Internal Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponseFail'
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
   /faceset-manipulation/update:
     post:
       summary: FaceSet-Face-API-Update (003-04)
@@ -661,24 +739,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceSetFaceUpdateResponse'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericResponseFail'
         '401':
           description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found
-        '500':
-          description: API Internal Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponseFail'
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
 components:
   schemas:
     Error:
@@ -777,48 +861,6 @@ components:
         - responsetId
         - responsetDt
         - statusCode
-    HeaderResponse_Fail:
-      properties:
-        partnerId:
-          type: string
-          description: >-
-            Partner identifier. This ID will be provided to each partner by
-            KBank
-        requestId:
-          type: string
-          description: ID to uniquely define each request from partner
-        requestDt:
-          type: string
-          description: >-
-            Request date-time define each request from partner format
-            yyyy-MM-dd'T'HH:mm:ss.SSSZ
-        responseId:
-          type: string
-          description: ID to uniquely define each request from partner
-        responsetDt:
-          type: string
-          description: >-
-            Request date-time define each request from partner format
-            yyyy-MM-dd'T'HH:mm:ss.SSSZ
-        statusCode:
-          type: string
-          description: 'Transaction process status default ''10'' (00=Success, 10=Fail)'
-          enum:
-            - '00'
-            - '10'
-          default: '10'
-        error:
-          description: Error message form Server API
-          $ref: '#/components/schemas/Error'
-      required:
-        - partnerId
-        - partnerSecret
-        - requestId
-        - requestDt
-        - responseId
-        - responsetDt
-        - statusCode
-        - errors
     GenericOpenApiResponse_Fail:
       properties:
         code:
@@ -844,12 +886,6 @@ components:
       required:
         - code
         - message
-    GenericResponseFail:
-      properties:
-        header:
-          $ref: '#/components/schemas/HeaderResponse_Fail'
-      required:
-        - header
     FaceDetectRequest:
       properties:
         header:
