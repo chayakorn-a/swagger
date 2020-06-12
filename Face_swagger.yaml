@@ -10,6 +10,8 @@ info:
 
     0.0.1 | Initail Document - Face API 1.0.2 | 2020-05-29 | Chayakorn Arjariya
 
+    0.0.2 | Change server endpoint and add more http response error status | 2020-06-12 | Chayakorn Arjariya
+
 
     ### Service Description
 
@@ -113,12 +115,10 @@ info:
     ED0017 | 'Face Set' is expired. | 001-05, 002-03, 003-01
 
       
-  version: 0.0.1
+  version: 0.0.2
 servers:
-  - url: 'http://api.example.com/v1'
+  - url: 'https://uat.openapi-nonprod.kasikornbank.com/v1'
     description: 'Optional server description, e.g. Main (production) server'
-  - url: 'http://staging-api.example.com'
-    description: 'Optional server description, e.g. Internal staging server for testing'
 security:
 - oAuth2_client_credential: []
 tags:
@@ -156,6 +156,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceDetectResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
         '401':
           description: Unauthorized
           content:
@@ -199,6 +205,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceQualityResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
         '401':
           description: Unauthorized
           content:
@@ -244,6 +256,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceCompareResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
         '401':
           description: Unauthorized
           content:
@@ -301,6 +319,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceCompareResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
         '401':
           description: Unauthorized
           content:
@@ -352,6 +376,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceIdentificationResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
         '401':
           description: Unauthorized
           content:
@@ -395,6 +425,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceSetCreateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
         '401':
           description: Unauthorized
           content:
@@ -438,6 +474,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceSetDeleteResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
         '401':
           description: Unauthorized
           content:
@@ -481,6 +523,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceSetUpdateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
         '401':
           description: Unauthorized
           content:
@@ -524,6 +572,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceSetGetResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
         '401':
           description: Unauthorized
           content:
@@ -567,6 +621,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceSetGetAllResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
         '401':
           description: Unauthorized
           content:
@@ -610,6 +670,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceSetFaceAddResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
         '401':
           description: Unauthorized
           content:
@@ -653,6 +719,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceSetFaceDeleteResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
         '401':
           description: Unauthorized
           content:
@@ -696,6 +768,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceSetFaceListFaceResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
         '401':
           description: Unauthorized
           content:
@@ -739,6 +817,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FaceSetFaceUpdateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericOpenApiResponse_Fail'
         '401':
           description: Unauthorized
           content:
