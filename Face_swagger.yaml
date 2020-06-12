@@ -10,7 +10,7 @@ info:
 
     0.0.1 | Initail Document - Face API 1.0.2 | 2020-05-29 | Chayakorn Arjariya
 
-    0.0.2 | Change server endpoint and add more http response error status | 2020-06-12 | Chayakorn Arjariya
+    0.0.2 | Server endpoint https://uat.openapi-nonprod.kasikornbank.com/v1 and add http status code 400 Bad Request | 2020-06-12 | Chayakorn Arjariya
 
 
     ### Service Description
