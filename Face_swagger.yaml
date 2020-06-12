@@ -1381,4 +1381,4 @@ components:
         </dl>
       flows:
         clientCredentials:
-          tokenUrl: https://dev.openapi-nonprod.kasikornbank.com/oauth/token
+          tokenUrl: https://uat.openapi-nonprod.kasikornbank.com/oauth/token
