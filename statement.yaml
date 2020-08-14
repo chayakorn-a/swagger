@@ -1,0 +1,337 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Bank Statement Inquiry Services exposed by API",
+    "version": "1.0",
+    "title": "(Draft) Bank Statement Data Format and Inquiry API Set",
+    "license": {
+      "name": "Apache License Version 2.0"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Accounts Deposits Information",
+      "description": "Information for deposit account."
+    }
+  ],
+  "paths": {
+    "/rest/api/v1/accounts/deposits/statement/inquiry": {
+      "post": {
+        "tags": [
+          "Accounts Deposits Information"
+        ],
+        "summary": "Retrieve a deposit account statement information",
+        "description": "Retrieve a deposit account statement information via this API endpoint using account number and statement date range",
+        "operationId": "inquiryAccountStatement",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "InquiryAccountStatement",
+            "description": "Inquiry account statement",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InquiryAccountStatement"
+            }
+          },
+          {
+            "name": "X-Client-Transaction-ID",
+            "in": "header",
+            "description": "Unique transaction id passed from consumer",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AccountStatement"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error occurred",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "InquiryAccountStatement": {
+      "type": "object",
+      "required": [
+        "accountNumber",
+        "statementStartDate",
+        "statementEndDate"
+      ],
+      "properties": {
+        "accountNumber": {
+          "type": "string",
+          "example": "0011000019",
+          "description": "Mandatory. Deposit account number."
+        },
+        "statementStartDate": {
+          "type": "string",
+          "format": "date",
+          "example": "2018-01-15",
+          "description": "Start date of the period for which the movements in the account are reported."
+        },
+        "statementEndDate": {
+          "type": "string",
+          "format": "date",
+          "example": "2018-01-20",
+          "description": "End date of the period for which the movements in the account are reported."
+        }
+      },
+      "title": "InquiryAccountStatement",
+      "description": "Inquiry account statement"
+    },
+    "DetailedErrorItem": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Missing juristicId query parameter",
+          "description": "More information on the problem and solution. Or, the error message from backend."
+        },
+        "originalErrorCode": {
+          "type": "string",
+          "example": "RM7885",
+          "description": "Original error code from backend."
+        },
+        "originalErrorDesc": {
+          "type": "string",
+          "example": "Credit Card Not found",
+          "description": "Original error message from backend."
+        }
+      },
+      "title": "DetailedErrorItem",
+      "description": "Detailed of Error"
+    },
+    "ErrorInfo": {
+      "type": "object",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "example": "I002",
+          "description": "Error Code"
+        },
+        "message": {
+          "type": "string",
+          "example": "REQUEST BODY IS INVALID",
+          "description": "Error Message"
+        },
+        "detailedErrors": {
+          "type": "array",
+          "description": "List of errors",
+          "items": {
+            "$ref": "#/definitions/DetailedErrorItem"
+          }
+        }
+      },
+      "title": "ErrorInfo",
+      "description": "Show information about the error"
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/ErrorInfo"
+        }
+      },
+      "title": "ErrorResponse",
+      "description": "Response model for error"
+    },
+    "AccountStatement": {
+      "type": "object",
+      "required": [
+        "institutionName",
+        "accountNumber",
+        "accountType",
+        "accountName",
+        "lastBalance",
+        "accountCurrency",
+        "statementEntries"
+      ],
+      "properties": {
+        "institutionName": {
+          "type": "string",
+          "example": "BAY, BBL, KBANK, KTB, SCB, TMB",
+          "description": "Name of the bank servicing the account. @TODO use industry standard." 
+        },
+        "accountNumber": {
+          "type": "string",
+          "example": "0011000019",
+          "description": "Mandatory. Deposit account number."
+        },
+        "accountType": {
+          "type": "string",
+          "example": "SVNG",
+          "description": "Type of account. Possible values are, non exclusively: SVNG for saving accoung, CHCK for checking account, TEDP (?) for term deposit. @TODO use industry standard, to be an explicit enum. https://www.iso20022.org/standardsrepository/type/CardAccountType1Code is one option"
+        },
+        "accountName": {
+          "type": "string",
+          "example": "My Salary Saving Account",
+          "description": "Name of the account given to the account by its owner."
+        },
+        "lastBalance": {
+          "type": "number",
+          "format": "double",
+          "example": 146532778.56,
+          "description": "Outstanding balance of the statement at the statement end date. The balance can be negative. @TODO review is it really required since it is the balance of the last entry?"
+        },
+        "accountCurrency": {
+          "type": "string",
+          "example": "THB",
+          "description": "Currency of the account. All financial amounts are expressed in this currency. Format: ISO 4217 3-character currency code."
+        },
+        "statementEntries": {
+          "type": "array",
+          "description": "List of statement entries",
+          "items": {
+            "$ref": "#/definitions/StatementEntry"
+          }
+        }
+      },
+      "title": "AccountStatement",
+      "description": "Account statement"
+    },
+    "StatementEntry": {
+      "type": "object",
+      "required": [
+        "dateTime",
+        "bankTransactionCode",
+        "mnemonicCode",
+        "mnemonicDescription",
+        "debitCreditIndicator",
+        "amount",
+        "amountCurrency",
+        "balance"
+      ],
+      "properties": {
+        "dateTime": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-01-15T16:31:40+07:00",
+          "description": "Statement entry date and time. Date and time at which an entry is posted to an account on the account servicer's books. @TODO do we need to define if it is bookingDate or valueDate or keep as is?"
+        },
+        "bankTransactionCode": {
+          "type": "string",
+          "example": "01",
+          "description": "@TODO: use industry standard. Is bankTransactionDescription required? what is the (ISO) standard for it such as https://www.iso20022.org/standardsrepository/type/StatementEntry1 and https://www.iso20022.org/external_code_list.page ? Do all TH banks align with this code? Is it redundant with mnemonic?"
+        },
+        "mnemonicCode": {
+          "type": "string",
+          "example": "TW",
+          "description": "Statement entry mnemonic code. Type of underlying transaction resulting in the entry which is transformed into a mnemonic code as printed in physical passbook."
+        },
+        "mnemonicDescription": {
+          "type": "string",
+          "example": "TRANSFER WITHDRAW WITH BOOK",
+          "description": "A description of statement entry mnemonic code."
+        },
+        "debitCreditIndicator": {
+          "type": "string",
+          "enum": [
+            "DBIT",
+            "CRDT"
+          ],
+          "example": "DBIT",
+          "description": "Statement entry debit/credit indicator. Indicates whether an entry is a credit or a debit.\nPossible Values:\nDBIT for debit transaction, if the value from source is DR\nCRDT for credit transaction, if the value from source is CR"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double",
+          "minimum": 0,
+          "example": 14.84,
+          "description": "Credit or debit amount of the statement entry. The value is always positive or null. Currency is the account currency."
+        },
+        "amountCurrency": {
+          "type": "string",
+          "example": "THB",
+          "description": "Currency of the transation amount. Format: ISO 4217 3-character currency code."
+        },
+        "balance": {
+          "type": "number",
+          "format": "double",
+          "example": 146532778.56,
+          "description": "Outstanding balance of the statement entry. The balance can be negative. Currency is the account currenty."
+        },
+        "processingBranchCode": {
+          "type": "string",
+          "example": "0700",
+          "description": "Optional. A code associated with branch of an organisation."
+        },
+        "processingBranchDescription": {
+          "type": "string",
+          "example": "Headquarters Branch",
+          "description": "Optional. A branch description associated with branch of an organisation."
+        },
+        "originCode": {
+          "type": "string",
+          "example": "MB",
+          "description": "Optional. Name by which a system is known to indicate the origin of transaction. @TODO is there any industry standard for this code? OR Each bank can simply create API directory service to answer."
+        },
+        "originDescription": {
+          "type": "string",
+          "example": "MOBILE BANKING",
+          "description": "Optional. A description of statement entry origin code."
+        }
+      },
+      "title": "StatementEntry",
+      "description": "Statement entry"
+    }
+  }
+}
